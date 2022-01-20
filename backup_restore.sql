@@ -60,7 +60,7 @@ BEGIN
     id INT IDENTITY(1, 1),
     database_name VARCHAR(200),
     depth INT,
-    file BIT
+    is_file BIT
     )
 
     -- хp_dirtree has three parameters:
@@ -72,12 +72,12 @@ BEGIN
 
     SET @fullBackupPath = (SELECT TOP (1) database_name FROM #Backup_names
                            WHERE database_name LIKE '%full%'
-                           AND file = 1
+                           AND is_file = 1
                            ORDER BY database_name DESC);
 
     SET @differentialBackupPath = (SELECT TOP (1) database_name FROM #Backup_names
                                    WHERE database_name LIKE '%diff%'
-                                   AND file = 1
+                                   AND is_file = 1
                                    ORDER BY database_name DESC);
 
 
